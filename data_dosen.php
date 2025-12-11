@@ -2,15 +2,9 @@
 include 'komponen/header.php';
 include 'komponen/sidebar.php';
 ?>
+
 <?php
-$db_host = 'localhost';
-$db_user = 'root';
-$db_pass = '';
-$db_name = 'kampus';
-$connection = mysqli_connect($db_host, $db_user, $db_pass, $db_name);
-if (!$connection) {
-    die("Connection failed: " . mysqli_connect_error());
-}
+include 'model/connect.php';
 $sql = 'SELECT * FROM tbl_dosen';
 $query = mysqli_query($connection, $sql);
 if (!$query) {
@@ -23,6 +17,9 @@ if (!$query) {
     include 'komponen/topbar.php';
     ?>
     <div class="col-sm-12 col-xl-15 pt-4 px-4">
+        <a href="formtambahdosen.php">
+            <button class="btn btn-primary w-10 m-2" type="button">Tambah Dosen</button>
+        </a>
         <div class="bg-secondary rounded h-100 p-4">
             <h6 class="mb-4">Data Dosen</h6>
             <table class="table">
@@ -32,6 +29,7 @@ if (!$query) {
                         <th scope="col">Nama</th>
                         <th scope="col">Prodi</th>
                         <th scope="col">email</th>
+                        <th scope="col">action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -42,6 +40,14 @@ if (!$query) {
                             <td><?php echo $row['nama']; ?></td>
                             <td><?php echo $row['prodi']; ?></td>
                             <td><?php echo $row['email']; ?></td>
+                            <td>
+                                <a href="formeditdosen.php?nidn=<?= $row['nidn']; ?>">
+                                    <button type="button" class="btn btn-info m-2">Edit</button>
+                                </a>
+                                <a href="proses_hapus_dosen.php?nidn=<?= $row['nidn']; ?>">
+                                    <button type="button" class="btn btn-danger m-2">Hapus</button>
+                                </a>
+                            </td>
                         </tr>
                     <?php endwhile; ?>
                 </tbody>

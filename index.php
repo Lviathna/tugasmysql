@@ -1,8 +1,14 @@
 <?php
 include 'komponen/header.php';
 include 'komponen/sidebar.php';
+include 'model/connect.php';
+
+$dosen_count     = mysqli_fetch_assoc(mysqli_query($connection, "SELECT COUNT(*) AS total FROM tbl_dosen"))['total'];
+$mahasiswa_count = mysqli_fetch_assoc(mysqli_query($connection, "SELECT COUNT(*) AS total FROM tbl_mahasiswa"))['total'];
+$matkul_count    = mysqli_fetch_assoc(mysqli_query($connection, "SELECT COUNT(*) AS total FROM tbl_matkul"))['total'];
+$nilai_count     = mysqli_fetch_assoc(mysqli_query($connection, "SELECT COUNT(*) AS total FROM tbl_nilai"))['total'];
 ?>
-<!-- konten -->
+
 <div class="content">
     <?php include 'komponen/topbar.php'; ?>
     <div class="container-fluid pt-4 px-4">
@@ -12,7 +18,7 @@ include 'komponen/sidebar.php';
                     <i class="fa fa-user fa-3x text-primary"></i>
                     <div class="ms-3">
                         <p class="mb-2">Data Dosen</p>
-                        <h6 class="mb-0">10</h6>
+                        <h6 class="mb-0"><?php echo $dosen_count; ?></h6>
                     </div>
                 </div>
             </div>
@@ -21,7 +27,7 @@ include 'komponen/sidebar.php';
                     <i class="fa fa-chart-bar fa-3x text-primary"></i>
                     <div class="ms-3">
                         <p class="mb-2">Data Mahasiswa</p>
-                        <h6 class="mb-0">10</h6>
+                        <h6 class="mb-0"><?php echo $mahasiswa_count; ?></h6>
                     </div>
                 </div>
             </div>
@@ -30,7 +36,7 @@ include 'komponen/sidebar.php';
                     <i class="fa fa-chart-area fa-3x text-primary"></i>
                     <div class="ms-3">
                         <p class="mb-2">Data Matakuliah</p>
-                        <h6 class="mb-0">10</h6>
+                        <h6 class="mb-0"><?php echo $matkul_count; ?></h6>
                     </div>
                 </div>
             </div>
@@ -39,7 +45,7 @@ include 'komponen/sidebar.php';
                     <i class="fa fa-chart-pie fa-3x text-primary"></i>
                     <div class="ms-3">
                         <p class="mb-2">Data Nilai</p>
-                        <h6 class="mb-0">10</h6>
+                        <h6 class="mb-0"><?php echo $nilai_count; ?></h6>
                     </div>
                 </div>
             </div>

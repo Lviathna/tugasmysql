@@ -3,14 +3,7 @@ include 'komponen/header.php';
 include 'komponen/sidebar.php';
 ?>
 <?php
-$db_host = 'localhost';
-$db_user = 'root';
-$db_pass = '';
-$db_name = 'kampus';
-$connection = mysqli_connect($db_host, $db_user, $db_pass, $db_name);
-if (!$connection) {
-    die("Connection failed: " . mysqli_connect_error());
-}
+include 'model/connect.php';
 $sql = "SELECT 
             tbl_nilai.id_nilai,
             tbl_nilai.nilai,
@@ -33,6 +26,9 @@ if (!$query) {
     include 'komponen/topbar.php';
     ?>
     <div class="col-sm-12 col-xl-15 pt-4 px-4">
+        <a href="formtambahnilai.php">
+            <button class="btn btn-primary w-10 m-2" type="button">Tambah Nilai</button>
+        </a>
         <div class="bg-secondary rounded h-100 p-4">
             <h6 class="mb-4">Data Nilai</h6>
             <table class="table">
@@ -44,6 +40,7 @@ if (!$query) {
                         <th scope="col">Mahasiswa</th>
                         <th scope="col">Dosen Pengampu</th>
                         <th scope="col">Matkul</th>
+                        <th scope="col">Action</th>
 
                     </tr>
                 </thead>
@@ -57,6 +54,15 @@ if (!$query) {
                             <td><?php echo $row['nama_mahasiswa']; ?></td>
                             <td><?php echo $row['nama_dosen']; ?></td>
                             <td><?php echo $row['nama_matkul']; ?></td>
+                            <td>
+                                <a href="formeditnilai.php?id_nilai=<?= $row['id_nilai']; ?>">
+                                    <button type="button" class="btn btn-info m-2">Edit</button>
+                                </a>
+                                <a href="proses_hapus_nilai.php?id_nilai=<?= $row['id_nilai']; ?>">
+                                    <button type="button" class="btn btn-danger m-2">Hapus</button>
+                                </a>
+                            </td>
+
                         </tr>
                     <?php endwhile; ?>
                 </tbody>
