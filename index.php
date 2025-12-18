@@ -1,7 +1,15 @@
 <?php
+session_start();
+
+if (!isset($_SESSION['login_user'])) {
+    header("Location: login.php");
+    exit();
+}
+
 include 'komponen/header.php';
 include 'komponen/sidebar.php';
 include 'model/connect.php';
+
 
 $dosen_count     = mysqli_fetch_assoc(mysqli_query($connection, "SELECT COUNT(*) AS total FROM tbl_dosen"))['total'];
 $mahasiswa_count = mysqli_fetch_assoc(mysqli_query($connection, "SELECT COUNT(*) AS total FROM tbl_mahasiswa"))['total'];

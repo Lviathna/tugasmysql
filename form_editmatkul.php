@@ -3,6 +3,22 @@
 <head>
     <title>Edit Form</title>
 </head>
+
+<?php
+session_start();
+if (!isset($_SESSION['login_user'])) {
+    header("Location: login.php");
+    exit();
+}
+
+// hanya admin yang boleh tambah data mahasiswa
+if ($_SESSION['role'] != 'admin') {
+    header("Location: index.php?page=dashboard");
+    exit();
+}
+?>
+
+
 <?php
 include 'model/connect.php';
 $xkodematkul = $_GET['kodematkul'];
