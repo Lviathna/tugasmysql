@@ -32,6 +32,7 @@ if (!$query) {
             <table class="table">
                 <thead>
                     <tr>
+                        <th scope="col">profile</th>
                         <th scope="col">Nim</th>
                         <th scope="col">Nama</th>
                         <th scope="col">Prodi</th>
@@ -44,6 +45,7 @@ if (!$query) {
                     <?php $i = 1;
                     while ($row = mysqli_fetch_array($query)) : ?>
                         <tr>
+                            <td><img src="foto/<?= $row['foto']; ?>" width="100px" height="auto"></td>
                             <td><?php echo $row['nim']; ?></td>
                             <td><?php echo $row['nama']; ?></td>
                             <td><?php echo $row['prodi']; ?></td>
@@ -51,10 +53,10 @@ if (!$query) {
                             <td><?php echo $row['email'] ?></td>
                             <td>
                                 <a href="formeditmahasiswa.php?nim=<?= $row['nim']; ?>">
-                                    <button type="button" class="btn btn-info m-2">Edit</button>
+                                    <button type="button" class="btn btn-info m-1">Edit</button>
                                 </a>
                                 <a href="proses_hapus_mahasiswa.php?nim=<?= $row['nim']; ?>">
-                                    <button type="button" class="btn btn-danger m-2">Hapus</button>
+                                    <button type="button" class="btn btn-danger m-1">Hapus</button>
                                 </a>
                             </td>
                         </tr>

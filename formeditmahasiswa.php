@@ -35,7 +35,7 @@ include 'komponen/sidebar.php';
     <div class="col-sm-12 col-xl-15 pt-4 px-4">
         <div class="bg-secondary rounded h-100 p-4">
             <h6 class="mb-4">Tambah Data Mahasiswa</h6>
-            <form action="proses_editmahasiswa.php" method="post">
+            <form action="proses_editmahasiswa.php" method="post" enctype="multipart/form-data">
                 <div class="mb-3">
                     <label for="exampleInputEmail1" class="form-label">NIM</label>
                     <input type="number" class="form-control" name="nim" value="<?php echo $mhs['nim']; ?>">
@@ -59,6 +59,11 @@ include 'komponen/sidebar.php';
                 <div class="mb-3">
                     <label for="exampleInputEmail1" class="form-label">Tahun Angkatan</label>
                     <input type="number" class="form-control" name="angkatan" value="<?php echo $mhs['angkatan']; ?>">
+                </div>
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Foto</label>
+                    <img src="foto/<?= $mhs['foto']; ?>" width="100px" height="auto"><br><br>
+                    <input type="file" class="form-control" name="file_foto">
                 </div>
                 <button type="submit" class="btn btn-success">Update</button>
                 <a href="data_mahasiswa.php" class="btn btn-danger" style="margin-left: 30px;">Keluar</a>
